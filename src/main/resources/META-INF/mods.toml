@@ -1,0 +1,19 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+license="MIT License"
+
+[[mods]]
+modId="petcollecting"
+version="1.0"
+displayName="Pet Collecting WIP Name"
+logoFile="icon.png"
+credits="Rick,Jared,Witixin,Caltinor,Darkhax"
+authors="Relay Modding"
+description="Something about pet collecting."
+
+[[dependencies.petcollecting]]
+    modId="forge"
+    mandatory=true
+    versionRange="[43,)"
+    ordering="NONE"
+    side="BOTH"

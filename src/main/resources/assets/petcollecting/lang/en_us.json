@@ -1,0 +1,15 @@
+{
+    "item.petcollecting.water_pet": "Water Pet",
+    "item.petcollecting.air_pet": "Air Pet",
+    "item.petcollecting.grass_pet": "Grass Pet",
+    "item.petcollecting.lava_pet": "Lava Pet",
+
+    "item.petcollecting.wood_pet": "Wood Pet",
+    "item.petcollecting.stone_pet": "Stone Pet",
+    "item.petcollecting.dirt_pet": "Dirt Pet",
+    "item.petcollecting.sand_pet": "Sand Pet",
+
+    "item.petcollecting.player_pet": "Player Pet",
+    "item.petcollecting.monster_pet": "Monster Pet",
+    "item.petcollecting.animal_pet": "Animal Pet"
+}
