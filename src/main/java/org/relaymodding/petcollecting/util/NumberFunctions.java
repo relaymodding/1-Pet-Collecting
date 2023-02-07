@@ -2,8 +2,10 @@ package org.relaymodding.petcollecting.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class NumberFunctions {
+
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 

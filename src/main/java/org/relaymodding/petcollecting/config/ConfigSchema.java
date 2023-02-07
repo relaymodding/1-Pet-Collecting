@@ -14,9 +14,9 @@ public class ConfigSchema {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
     @Expose
-    public int petEncounterCooldownMs = 2000;
+    public int petEncounterCooldownTicks = 40;
     @Expose
-    public int petUseAbilityCooldownMs = 5000;
+    public int petUseAbilityCooldownTicks = 100;
 
     @Expose
     public boolean sendChatMessages = true;
