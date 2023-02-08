@@ -50,4 +50,9 @@ public class WoodPetAbility implements PetAbility {
     public String descriptionId() {
         return "wood";
     }
+
+    @Override
+    public String foodId() {
+        return descriptionId();
+    }
 }

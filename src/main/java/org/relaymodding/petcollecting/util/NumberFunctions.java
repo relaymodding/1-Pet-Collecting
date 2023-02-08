@@ -2,7 +2,6 @@ package org.relaymodding.petcollecting.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 public class NumberFunctions {
 

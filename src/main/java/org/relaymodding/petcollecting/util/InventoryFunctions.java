@@ -13,7 +13,7 @@ public class InventoryFunctions {
         }
 
 		Inventory inv = player.getInventory();
-		for (int i=0; i < 36; i++) {
+		for (int i = 0; i < 36; i++) {
 			ItemStack slotItemStack = inv.getItem(i);
             if (slotItemStack.getItem().equals(petItem)) {
                 return true;

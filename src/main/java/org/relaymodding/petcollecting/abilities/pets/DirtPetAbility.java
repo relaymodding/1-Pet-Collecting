@@ -16,4 +16,9 @@ public class DirtPetAbility implements PetAbility {
     public String descriptionId() {
         return "dirt";
     }
+
+    @Override
+    public String foodId() {
+        return descriptionId();
+    }
 }

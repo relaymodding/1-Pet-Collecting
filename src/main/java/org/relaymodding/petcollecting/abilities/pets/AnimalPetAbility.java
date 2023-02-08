@@ -2,8 +2,10 @@ package org.relaymodding.petcollecting.abilities.pets;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -12,10 +14,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.relaymodding.petcollecting.api.PetAbility;
+import org.relaymodding.petcollecting.data.Constants;
 import org.relaymodding.petcollecting.util.MessageFunctions;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.IntStream;
@@ -24,8 +27,9 @@ public class AnimalPetAbility implements PetAbility {
     private static final UUID SERILUM_UUID = UUID.fromString("8f385a05-25c9-4b85-9b14-f7dc7cfc1d4f");
     private static final MutableComponent SERILUM_RESPONSE = Component.translatable("petcollecting.pet.response.animal.serilum");
     private static final List<MutableComponent> useResponses = IntStream.range(0, 3).mapToObj(value -> "petcollecting.pet.response.animal." + value).map(Component::translatable).toList();
-    private static final List<EntityType<?>> surfaceAnimalEntityTypes = Arrays.asList(EntityType.BEE, EntityType.CAT, EntityType.CHICKEN, EntityType.COW, EntityType.FOX, EntityType.MOOSHROOM, EntityType.OCELOT, EntityType.PANDA, EntityType.PARROT, EntityType.PIG, EntityType.POLAR_BEAR, EntityType.RABBIT, EntityType.SHEEP, EntityType.WOLF, EntityType.GOAT, EntityType.HORSE);
-    private static final List<EntityType<?>> waterAnimalEntityTypes = Arrays.asList(EntityType.AXOLOTL, EntityType.TURTLE, EntityType.TROPICAL_FISH, EntityType.PUFFERFISH, EntityType.COD, EntityType.DOLPHIN, EntityType.SALMON, EntityType.SQUID, EntityType.GLOW_SQUID);
+
+    private static final TagKey<EntityType<?>> LAND_TAG_KEY = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, Constants.rl("land_mobs"));
+    private static final TagKey<EntityType<?>> WATER_TAG_KEY = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, Constants.rl("water_mobs"));
 
     /*
         Creates a random animal entity on click position.
@@ -36,9 +40,9 @@ public class AnimalPetAbility implements PetAbility {
 
         EntityType<?> animalEntityType;
         if (block.equals(Blocks.WATER)) {
-            animalEntityType = waterAnimalEntityTypes.get(level.getRandom().nextInt(waterAnimalEntityTypes.size()));
+            animalEntityType = ForgeRegistries.ENTITY_TYPES.tags().getTag(WATER_TAG_KEY).getRandomElement(level.getRandom()).orElseThrow();
         } else {
-            animalEntityType = surfaceAnimalEntityTypes.get(level.getRandom().nextInt(surfaceAnimalEntityTypes.size()));
+            animalEntityType = ForgeRegistries.ENTITY_TYPES.tags().getTag(LAND_TAG_KEY).getRandomElement(level.getRandom()).orElseThrow();
         }
 
         LivingEntity livingEntity = (LivingEntity) animalEntityType.create(level);

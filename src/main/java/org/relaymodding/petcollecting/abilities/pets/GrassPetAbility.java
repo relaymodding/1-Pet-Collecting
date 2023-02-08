@@ -8,7 +8,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,7 +24,7 @@ public class GrassPetAbility implements PetAbility {
         Simulates a bone meal use.
      */
     public boolean processPetAbility(Level level, Player player, BlockPos clickPos, ItemStack itemStack) {
-        if (!applyBonemeal(new ItemStack(Items.BONE_MEAL), level, clickPos, player)) {
+        if (!applyBonemeal(level, clickPos)) {
             return false;
         }
 
@@ -38,7 +37,7 @@ public class GrassPetAbility implements PetAbility {
         return true;
     }
 
-    public static boolean applyBonemeal(ItemStack itemstack, Level world, BlockPos pos, Player player) {
+    public static boolean applyBonemeal(Level world, BlockPos pos) {
         BlockState blockstate = world.getBlockState(pos);
 
         if (blockstate.getBlock() instanceof BonemealableBlock bonemealableblock) {
@@ -46,10 +45,6 @@ public class GrassPetAbility implements PetAbility {
                 if (world instanceof ServerLevel) {
                     if (bonemealableblock.isBonemealSuccess(world, world.random, pos, blockstate)) {
                         bonemealableblock.performBonemeal((ServerLevel) world, world.random, pos, blockstate);
-                    }
-
-                    if (!player.isCreative()) {
-                        itemstack.shrink(1);
                     }
                 }
 
@@ -63,5 +58,10 @@ public class GrassPetAbility implements PetAbility {
     @Override
     public String descriptionId() {
         return "grass";
+    }
+
+    @Override
+    public String foodId() {
+        return descriptionId();
     }
 }

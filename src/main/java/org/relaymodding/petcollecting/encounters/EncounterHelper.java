@@ -1,12 +1,16 @@
 package org.relaymodding.petcollecting.encounters;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.Animal;
@@ -19,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.Nullable;
 import org.relaymodding.petcollecting.Main;
 import org.relaymodding.petcollecting.data.Constants;
@@ -37,6 +42,8 @@ import java.util.function.UnaryOperator;
 public class EncounterHelper {
 
     private static final String PREV_ENCOUNTER_KEY = Constants.namespace("encounterTime");
+
+    private static final ResourceLocation END_DRAGON_KILLED = new ResourceLocation("end/kill_dragon");
 
     /*
         Checks whether the player is encountering a pet, and drops it.
@@ -123,6 +130,8 @@ public class EncounterHelper {
         TALL_GRASS(PCItems.GRASS_PET),
         IN_LAVA(PCItems.LAVA_PET),
 
+        END_NAVIGATION(PCItems.ENDER_PET),
+
         TREE_CHOP(PCItems.WOOD_PET),
         STONE_BREAK(PCItems.STONE_PET),
         DIRT_DIG(PCItems.DIRT_PET),
@@ -131,6 +140,7 @@ public class EncounterHelper {
         PLAYER_DEATH(PCItems.PLAYER_PET),
         MONSTER_DEATH(PCItems.MONSTER_PET),
         ANIMAL_DEATH(PCItems.ANIMAL_PET);
+
 
         private final RegistryObject<PetItem> item;
         private final UnaryOperator<Style> styleFunction;
@@ -196,6 +206,10 @@ public class EncounterHelper {
                 }
             } else if (player.level.getBlockState(player.blockPosition()).getBlock() instanceof TallGrassBlock) {
                 return TALL_GRASS;
+            }
+            else if (player.level.dimension() == Level.END) {
+                Advancement advancement = player.getServer().getAdvancements().getAdvancement(END_DRAGON_KILLED);
+                if (player.getServer().getPlayerList().getPlayerAdvancements((ServerPlayer) player).getOrStartProgress(advancement).isDone()) return END_NAVIGATION;
             }
             return null;
         }

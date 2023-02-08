@@ -16,4 +16,9 @@ public class StonePetAbility implements PetAbility {
     public String descriptionId() {
         return "stone";
     }
+
+    @Override
+    public String foodId() {
+        return descriptionId();
+    }
 }

@@ -16,4 +16,9 @@ public class LavaPetAbility implements PetAbility {
     public String descriptionId() {
         return "lava";
     }
+
+    @Override
+    public String foodId() {
+        return descriptionId();
+    }
 }

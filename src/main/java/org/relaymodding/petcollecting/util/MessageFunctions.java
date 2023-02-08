@@ -1,14 +1,9 @@
 package org.relaymodding.petcollecting.util;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.CommonComponents;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 import org.relaymodding.petcollecting.Main;
-
-import java.util.function.UnaryOperator;
 
 public class MessageFunctions {
     public static void sendMessage(Player player, MutableComponent messageString) {

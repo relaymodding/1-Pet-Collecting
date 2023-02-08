@@ -3,6 +3,7 @@ package org.relaymodding.petcollecting.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.relaymodding.petcollecting.data.Constants;
 
 import java.io.File;
@@ -14,7 +15,7 @@ public class ConfigSchema {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
     @Expose
-    public int petEncounterCooldownTicks = 40;
+    public int petEncounterCooldownTicks = FMLEnvironment.production ? 10 * 20 * 60 : 2 * 20;
     @Expose
     public int petUseAbilityCooldownTicks = 100;
 
@@ -29,6 +30,12 @@ public class ConfigSchema {
     public double blockBreakEncounterChance = 0.1;
     @Expose
     public double livingDeathEncounterChance = 0.1;
+
+    @Expose
+    public double elytraJumpBoost = 1.5;
+
+    @Expose
+    public double endPetRange = 10;
 
     public static ConfigSchema load(File configFile) {
 
