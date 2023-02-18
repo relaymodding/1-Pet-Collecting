@@ -36,6 +36,13 @@ public class ConfigSchema {
 
     @Expose
     public double endPetRange = 10;
+    
+    @Expose
+    public float petUnbreakingGrowth = 0.001f;
+    @Expose
+    public float dirtToStarProgress = 1000;
+    @Expose
+    public String dirtReward = "minecraft:nether_star";
 
     public static ConfigSchema load(File configFile) {
 

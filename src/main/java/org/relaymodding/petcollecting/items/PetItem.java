@@ -27,6 +27,7 @@ import java.util.List;
 public class PetItem extends Item {
     private final RegistryObject<? extends PetAbility> ability;
     private final Ingredient foodItem;
+    public static String UNBREAKING_CHANCE = "unbreakingChance";
 
     private static final int MAX_DAMAGE = 16;
 
@@ -56,7 +57,7 @@ public class PetItem extends Item {
                 if (foodItem.test(slotItemStack)) {
                     //This feels horrible, but I can't think of other ways to get data from the Ingredient.
                     slotItemStack.shrink(1);
-                    this.setDamage(pStack, pStack.getDamageValue() - 1);
+                    pStack.setDamageValue(pStack.getDamageValue() -1);
                     pLevel.playSound(null, pEntity.getX(), pEntity.getY(), pEntity.getZ(), SoundEvents.GENERIC_EAT, SoundSource.AMBIENT, 1.0f, pLevel.random.nextFloat());
                 }
             }
@@ -73,7 +74,11 @@ public class PetItem extends Item {
             boolean tookAction = processAbility(level, player, context.getClickedPos(), stack);
             if (tookAction) {
                 player.getCooldowns().addCooldown(this, Main.config.petUseAbilityCooldownTicks);
-                if (!(foodItem == Ingredient.EMPTY)) stack.hurt(1, level.getRandom(), (ServerPlayer) player);
+                float unbreakingChance = stack.getOrCreateTag().getFloat(UNBREAKING_CHANCE);
+                if (!(foodItem == Ingredient.EMPTY)  && level.random.nextFloat() > unbreakingChance) {
+                	stack.hurtAndBreak(1, player, plyr ->{}); 
+                	stack.getTag().putFloat(UNBREAKING_CHANCE, unbreakingChance + Main.config.petUnbreakingGrowth);
+                }
             }
             return InteractionResult.sidedSuccess(tookAction);
         }
@@ -87,7 +92,11 @@ public class PetItem extends Item {
             boolean tookAction = processAbility(level, player, player.blockPosition().relative(player.getDirection(), 2), stack);
             if (tookAction) {
                 player.getCooldowns().addCooldown(this, Main.config.petUseAbilityCooldownTicks);
-                if (!(foodItem == Ingredient.EMPTY)) stack.hurt(1, level.getRandom(), (ServerPlayer) player);
+                float unbreakingChance = stack.getOrCreateTag().getFloat(UNBREAKING_CHANCE);
+                if (!(foodItem == Ingredient.EMPTY) && level.random.nextFloat() > unbreakingChance) {
+                	stack.hurtAndBreak(1, player, plyr -> {});
+                	stack.getTag().putFloat(UNBREAKING_CHANCE, unbreakingChance + Main.config.petUnbreakingGrowth);
+                }
             }
             return InteractionResultHolder.sidedSuccess(stack, tookAction);
         }

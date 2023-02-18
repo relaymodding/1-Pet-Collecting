@@ -15,6 +15,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.relaymodding.petcollecting.api.PetAbility;
+import org.relaymodding.petcollecting.items.PetItem;
 import org.relaymodding.petcollecting.util.MessageFunctions;
 import org.relaymodding.petcollecting.util.RaytraceFunctions;
 
@@ -50,7 +51,8 @@ public class SandPetAbility implements PetAbility {
             }
         });
         boolean used = entities.size() > 0;
-        if (used) {
+        float unbreakingChance = itemStack.getOrCreateTag().getFloat(PetItem.UNBREAKING_CHANCE);
+        if (used && level.random.nextFloat() > unbreakingChance) {
             itemStack.hurt(3, level.getRandom(), (ServerPlayer) player);
             MessageFunctions.sendClientMessage(player, useResponses.get(level.getRandom().nextInt(useResponses.size())).withStyle(ChatFormatting.DARK_PURPLE));
         }

@@ -5,7 +5,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class ClientUtil {
 
-    public static void setPlayerSpeed(Vec3 vec) {
+	public static void setPlayerSpeed(Vec3 vec) {
         Minecraft.getInstance().player.setDeltaMovement(vec.add(Minecraft.getInstance().player.getDeltaMovement()));
     }
 }
