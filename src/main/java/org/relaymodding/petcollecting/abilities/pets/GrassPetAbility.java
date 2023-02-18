@@ -42,9 +42,9 @@ public class GrassPetAbility implements PetAbility {
 
         if (blockstate.getBlock() instanceof BonemealableBlock bonemealableblock) {
             if (bonemealableblock.isValidBonemealTarget(world, pos, blockstate, world.isClientSide)) {
-                if (world instanceof ServerLevel) {
-                    if (bonemealableblock.isBonemealSuccess(world, world.random, pos, blockstate)) {
-                        bonemealableblock.performBonemeal((ServerLevel) world, world.random, pos, blockstate);
+                if (world instanceof ServerLevel level) {
+                    if (bonemealableblock.isBonemealSuccess(level, level.random, pos, blockstate)) {
+                        bonemealableblock.performBonemeal(level, level.random, pos, blockstate);
                     }
                 }
 

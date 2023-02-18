@@ -9,7 +9,9 @@ import java.util.function.Supplier;
 
 public class ClientSetPlayerSpeedPacket {
 
-    private final double x, y, z;
+    private final double x;
+    private final double y;
+    private final double z;
 
     public ClientSetPlayerSpeedPacket(double x, double y, double z) {
         this.x = x;
@@ -33,9 +35,7 @@ public class ClientSetPlayerSpeedPacket {
      */
     public void handle(Supplier<NetworkEvent.Context> netContext) {
         final NetworkEvent.Context context = netContext.get();
-        context.enqueueWork(() -> {
-            ClientUtil.setPlayerSpeed(new Vec3(x, y, z));
-        });
+        context.enqueueWork(() -> ClientUtil.setPlayerSpeed(new Vec3(x, y, z)));
         context.setPacketHandled(true);
     }
 

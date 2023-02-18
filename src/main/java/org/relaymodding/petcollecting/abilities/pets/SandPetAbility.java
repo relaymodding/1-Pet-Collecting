@@ -50,7 +50,7 @@ public class SandPetAbility implements PetAbility {
                 }
             }
         });
-        boolean used = entities.size() > 0;
+        boolean used = !entities.isEmpty();
         float unbreakingChance = itemStack.getOrCreateTag().getFloat(PetItem.UNBREAKING_CHANCE);
         if (used && level.random.nextFloat() > unbreakingChance) {
             itemStack.hurt(3, level.getRandom(), (ServerPlayer) player);

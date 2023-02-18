@@ -50,7 +50,7 @@ public class AnimalPetAbility implements PetAbility {
             return false;
         }
 
-        livingEntity.setPos(clickPos.getX(), clickPos.getY() + 1, clickPos.getZ());
+        livingEntity.setPos(clickPos.getX(), clickPos.getY() + 1d, clickPos.getZ());
         level.addFreshEntity(livingEntity);
 
         MutableComponent useResponse = useResponses.get(level.getRandom().nextInt(useResponses.size()));
