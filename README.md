@@ -1,6 +1,6 @@
 # pet-collecting
 
-Good luck Darkhax! Ucandoit!
+Good luck Jared (and Darkhax)! Ucandoit!
 
 I did infact do it! You got this Witixin
 
