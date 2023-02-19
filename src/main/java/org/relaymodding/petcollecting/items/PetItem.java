@@ -26,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import org.relaymodding.petcollecting.Main;
 import org.relaymodding.petcollecting.api.PetAbility;
 import org.relaymodding.petcollecting.data.Constants;
+import org.relaymodding.petcollecting.util.PlayerFunctions;
 
 import java.util.List;
 
@@ -79,7 +80,7 @@ public class PetItem extends Item {
         if (!level.isClientSide && player != null) {
             boolean tookAction = processAbility(level, player, context.getClickedPos(), stack);
             if (tookAction) {
-                player.getCooldowns().addCooldown(this, Main.config.petUseAbilityCooldownTicks);
+                PlayerFunctions.applyCooldown(player, Main.config.petUseAbilityCooldownTicks, this);
                 float unbreakingChance = stack.getOrCreateTag().getFloat(UNBREAKING_CHANCE);
                 if (!(foodItem == Ingredient.EMPTY)  && level.random.nextFloat() > unbreakingChance) {
                 	stack.hurtAndBreak(1, player, plyr ->{}); 
@@ -97,7 +98,7 @@ public class PetItem extends Item {
         if (!level.isClientSide) {
             boolean tookAction = processAbility(level, player, player.blockPosition().relative(player.getDirection(), 2), stack);
             if (tookAction) {
-                player.getCooldowns().addCooldown(this, Main.config.petUseAbilityCooldownTicks);
+                PlayerFunctions.applyCooldown(player, Main.config.petUseAbilityCooldownTicks, this);
                 float unbreakingChance = stack.getOrCreateTag().getFloat(UNBREAKING_CHANCE);
                 if (!(foodItem == Ingredient.EMPTY) && level.random.nextFloat() > unbreakingChance) {
                 	stack.hurtAndBreak(1, player, plyr -> {});
