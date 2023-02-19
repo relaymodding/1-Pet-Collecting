@@ -1,0 +1,37 @@
+{
+  "parent": "petcollecting:root",
+  "criteria": {
+    "collect_pet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "petcollecting:monster_pet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "title": {
+      "translate": "advancements.petcollecting.monster_pet.title"
+    },
+    "description": {
+      "translate": "advancements.petcollecting.monster_pet.description"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "petcollecting:monster_pet"
+    },
+    "show_toast": true
+  },
+  "requirements": [
+    [
+      "collect_pet"
+    ]
+  ]
+}

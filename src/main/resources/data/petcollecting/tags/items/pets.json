@@ -1,0 +1,17 @@
+{
+  "values": [
+    "petcollecting:water_pet",
+    "petcollecting:grass_pet",
+    "petcollecting:air_pet",
+    "petcollecting:lava_pet",
+    "petcollecting:wood_pet",
+    "petcollecting:stone_pet",
+    "petcollecting:dirt_pet",
+    "petcollecting:sand_pet",
+    "petcollecting:player_pet",
+    "petcollecting:monster_pet",
+    "petcollecting:animal_pet",
+    "petcollecting:petal_pet",
+    "petcollecting:end_pet"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "parent": "petcollecting:root",
+  "criteria": {
+    "collect_pet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "petcollecting:sand_pet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "title": {
+      "translate": "advancements.petcollecting.sand_pet.title"
+    },
+    "description": {
+      "translate": "advancements.petcollecting.sand_pet.description"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "petcollecting:sand_pet"
+    },
+    "show_toast": true
+  },
+  "requirements": [
+    [
+      "collect_pet"
+    ]
+  ]
+}
