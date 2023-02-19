@@ -13,7 +13,7 @@ public class CompareBlockFunctions {
 	}
 
 	public static boolean isTreeLog(Block block) {
-		return blockIsInRegistryHolder(block, BlockTags.LOGS) || block instanceof RotatedPillarBlock;
+		return blockIsInRegistryHolder(block, BlockTags.LOGS);
 	}
 
 	public static boolean isStone(Block block) {
