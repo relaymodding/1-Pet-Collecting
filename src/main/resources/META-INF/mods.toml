@@ -10,6 +10,7 @@ logoFile = "icon.png"
 credits = "Rick, Jared, Witixin, Caltinor, Darkhax"
 authors = "Relay Modding"
 description = "Something about pet collecting."
+itemIcon = "petcollecting:animal_pet"
 
 [[dependencies.petcollecting]]
 modId = "forge"
