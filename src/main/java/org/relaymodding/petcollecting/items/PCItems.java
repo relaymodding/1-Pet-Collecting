@@ -28,6 +28,7 @@ public class PCItems {
     public static final RegistryObject<PetItem> PLAYER_PET = ITEMS.register("player_pet", () -> new PetItem(PCPetAbilities.PLAYER, Ingredient.of(Items.PLAYER_HEAD)));
     public static final RegistryObject<PetItem> MONSTER_PET = ITEMS.register("monster_pet", () -> new PetItem(PCPetAbilities.MONSTER, Ingredient.EMPTY));
     public static final RegistryObject<PetItem> ANIMAL_PET = ITEMS.register("animal_pet", () -> new PetItem(PCPetAbilities.ANIMAL, Ingredient.of(Items.BEETROOT)));
+    public static final RegistryObject<PetItem> PETAL_PET = ITEMS.register("petal_pet", () -> new PetItem(PCPetAbilities.PETAL, Ingredient.of(ItemTags.FLOWERS)));
 
     public static final RegistryObject<PetItem> ENDER_PET = ITEMS.register("end_pet", () -> new PetItem(PCPetAbilities.END, Ingredient.of(Items.ENDER_PEARL)));
 }

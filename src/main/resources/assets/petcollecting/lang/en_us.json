@@ -1,4 +1,5 @@
 {
+  "effect.petcollecting.lava_walker": "Lava Walking",
   "item.petcollecting.water_pet": "Water Pet",
   "item.petcollecting.air_pet": "Air Pet",
   "item.petcollecting.grass_pet": "Grass Pet",
@@ -10,6 +11,7 @@
   "item.petcollecting.player_pet": "Player Pet",
   "item.petcollecting.monster_pet": "Monster Pet",
   "item.petcollecting.animal_pet": "Animal Pet",
+  "item.petcollecting.petal_pet": "Petal Pet",
   "item.petcollecting.end_pet" : "End Pet",
   "petcollecting.encountered": "You encountered a(n) %s pet!",
   "petcollecting.pet.air": "Air",
@@ -24,6 +26,7 @@
   "petcollecting.pet.water": "Water",
   "petcollecting.pet.wood": "Wood",
   "petcollecting.pet.end" : "End",
+  "petcollecting.pet.petal": "Petal",
   "petcollecting.pet.response.animal.0": "I create life.",
   "petcollecting.pet.response.animal.1": "Hello there little friend.",
   "petcollecting.pet.response.animal.2": "I did not expect you!",
@@ -56,6 +59,7 @@
   "petcollecting.pet.desc.player": "I help recover after close battles",
   "petcollecting.pet.desc.monster": "Makes mobs around you passive for a moment",
   "petcollecting.pet.desc.animal": "Spawns a random animal",
+  "petcollecting.pet.desc.petal": "Grows a random flower",
   "petcollecting.pet.food.base" : "This pet consumes: ",
   "petcollecting.pet.food.water":"Kelp",
   "petcollecting.pet.food.player":"Player Heads",
@@ -69,6 +73,7 @@
   "petcollecting.pet.food.sand" : "Sandstone",
   "petcollecting.pet.food.end" : "Ender Pearls",
   "petcollecting.pet.food.dirt" : "Dirt",
+  "petcollecting.pet.food.petal": "Flowers",
   "itemGroup.petcollecting" : "Pet Collecting",
   "petcollecting.pet.item.break" : "Oh no! Your pet disappeared!"
 }

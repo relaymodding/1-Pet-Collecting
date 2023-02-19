@@ -134,6 +134,7 @@ public class EncounterHelper {
         STONE_BREAK(PCItems.STONE_PET),
         DIRT_DIG(PCItems.DIRT_PET),
         SAND_DIG(PCItems.SAND_PET),
+        FLOWER_BREAK(PCItems.PETAL_PET),
 
         PLAYER_DEATH(PCItems.PLAYER_PET),
         MONSTER_DEATH(PCItems.MONSTER_PET),
@@ -187,6 +188,8 @@ public class EncounterHelper {
                 return DIRT_DIG;
             } else if (CompareBlockFunctions.isSand(block)) {
                 return SAND_DIG;
+            } else if (CompareBlockFunctions.isFlower(block)) {
+                return FLOWER_BREAK;
             }
             return null;
         }

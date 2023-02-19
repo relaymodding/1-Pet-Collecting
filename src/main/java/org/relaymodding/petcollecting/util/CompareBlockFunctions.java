@@ -3,6 +3,7 @@ package org.relaymodding.petcollecting.util;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 
 public class CompareBlockFunctions {
@@ -23,7 +24,15 @@ public class CompareBlockFunctions {
 		return blockIsInRegistryHolder(block, BlockTags.DIRT);
 	}
 
+	public static boolean isFlowerPlantable(Block block) {
+		return isDirt(block) || block == Blocks.GRASS_BLOCK; // Tag?
+	}
+
 	public static boolean isSand(Block block) {
 		return blockIsInRegistryHolder(block, BlockTags.SAND);
+	}
+
+	public static boolean isFlower(Block block) {
+		return blockIsInRegistryHolder(block, BlockTags.FLOWERS);
 	}
 }
