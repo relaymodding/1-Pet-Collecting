@@ -29,12 +29,14 @@ public class WoodPetAbility implements PetAbility {
         Plants a sapling and grows a tree from it.
      */
     public boolean processPetAbility(Level level, Player player, BlockPos clickPos, ItemStack itemStack) {
-        if (!CompareBlockFunctions.isDirt(level.getBlockState(clickPos).getBlock())) {
+
+        final BlockPos saplingPos = clickPos.above().immutable();
+
+        if (!CompareBlockFunctions.isDirt(level.getBlockState(clickPos).getBlock()) || !level.getBlockState(saplingPos).isAir()) {
             return false;
         }
 
         SaplingBlock saplingBlock = (SaplingBlock) saplingBlocks.get(level.getRandom().nextInt(saplingBlocks.size()));
-        BlockPos saplingPos = clickPos.above().immutable();
         BlockState saplingState = saplingBlock.defaultBlockState().setValue(SaplingBlock.STAGE, 1);
 
         level.setBlock(saplingPos, saplingState, 3);
