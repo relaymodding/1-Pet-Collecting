@@ -1,0 +1,37 @@
+{
+  "parent": "petcollecting:root",
+  "criteria": {
+    "collect_pet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "petcollecting:potion_pet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "title": {
+      "translate": "advancements.petcollecting.potion_pet.title"
+    },
+    "description": {
+      "translate": "advancements.petcollecting.potion_pet.description"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "petcollecting:potion_pet"
+    },
+    "show_toast": true
+  },
+  "requirements": [
+    [
+      "collect_pet"
+    ]
+  ]
+}

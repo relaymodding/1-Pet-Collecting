@@ -30,6 +30,8 @@ public class ConfigSchema {
     public double blockBreakEncounterChance = 0.1;
     @Expose
     public double livingDeathEncounterChance = 0.1;
+    @Expose
+    public double potionBrewEncounterChance = 0.1;
 
     @Expose
     public double elytraJumpBoost = 1.5;

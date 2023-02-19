@@ -9,7 +9,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.brewing.PlayerBrewedPotionEvent;
+import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -62,5 +65,16 @@ public class PetEncounterEvents {
         BlockPos entityPos = livingEntity.blockPosition();
 
         EncounterHelper.checkForEncounter(level, player, entityPos, EncounterHelper.EncounterType.fromDeath(livingEntity), EncounterHelper.OriginType.LIVING_DEATH);
+    }
+
+    @SubscribeEvent
+    public static void onPotionBrew(PlayerBrewedPotionEvent event) {
+
+        final Player player = event.getEntity();
+        final Level level = player.level;
+
+        if (!level.isClientSide) {
+            EncounterHelper.checkForEncounter(level, player, player.blockPosition(), EncounterHelper.EncounterType.fromBrew(player, event.getStack()), EncounterHelper.OriginType.POTION_BREW);
+        }
     }
 }

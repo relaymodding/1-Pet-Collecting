@@ -18,6 +18,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TallGrassBlock;
@@ -26,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 import org.relaymodding.petcollecting.Main;
 import org.relaymodding.petcollecting.data.Constants;
 import org.relaymodding.petcollecting.encounters.process.BlockBreakEncounter;
+import org.relaymodding.petcollecting.encounters.process.PotionBrewEncounter;
 import org.relaymodding.petcollecting.encounters.process.LivingDeathEncounter;
 import org.relaymodding.petcollecting.encounters.process.TickEncounter;
 import org.relaymodding.petcollecting.items.PCItems;
@@ -71,6 +73,7 @@ public class EncounterHelper {
             case TICK -> Main.config.tickEncounterChance;
             case BLOCK_BREAK -> Main.config.blockBreakEncounterChance;
             case LIVING_DEATH -> Main.config.livingDeathEncounterChance;
+            case POTION_BREW -> Main.config.potionBrewEncounterChance;
         };
 
         if (roll > chance) {
@@ -84,6 +87,8 @@ public class EncounterHelper {
                     encounterResult = BlockBreakEncounter.processBlockBreakEncounter(level, player, blockPos, encounterType);
             case LIVING_DEATH ->
                     encounterResult = LivingDeathEncounter.processLivingDeathEncounter(level, player, blockPos, encounterType);
+            case POTION_BREW ->
+                encounterResult = PotionBrewEncounter.processEncounter(level, player, blockPos, encounterType);
         }
 
         if (!encounterResult) {
@@ -135,6 +140,7 @@ public class EncounterHelper {
         DIRT_DIG(PCItems.DIRT_PET),
         SAND_DIG(PCItems.SAND_PET),
         FLOWER_BREAK(PCItems.PETAL_PET),
+        POTION_BREW(PCItems.POTION_PET),
 
         PLAYER_DEATH(PCItems.PLAYER_PET),
         MONSTER_DEATH(PCItems.MONSTER_PET),
@@ -164,6 +170,16 @@ public class EncounterHelper {
 
         public MutableComponent getEncounterString(MutableComponent petType) {
             return Component.translatable("petcollecting.encountered", petType).withStyle(getStyleFunction());
+        }
+
+        @Nullable
+        public static EncounterType fromBrew(Player player, ItemStack stack) {
+
+            if (stack.getItem() instanceof PotionItem) {
+                return POTION_BREW;
+            }
+
+            return null;
         }
 
         @Nullable
@@ -219,6 +235,7 @@ public class EncounterHelper {
     public enum OriginType {
         TICK,
         BLOCK_BREAK,
-        LIVING_DEATH
+        LIVING_DEATH,
+        POTION_BREW
     }
 }

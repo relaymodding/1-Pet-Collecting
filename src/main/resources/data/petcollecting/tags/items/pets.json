@@ -12,6 +12,7 @@
     "petcollecting:monster_pet",
     "petcollecting:animal_pet",
     "petcollecting:petal_pet",
-    "petcollecting:end_pet"
+    "petcollecting:end_pet",
+    "petcollecting:potion_pet"
   ]
 }

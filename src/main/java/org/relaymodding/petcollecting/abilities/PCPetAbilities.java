@@ -28,6 +28,7 @@ public class PCPetAbilities {
     public static final RegistryObject<WoodPetAbility> WOOD = PET_ABILITIES.register("wood", WoodPetAbility::new);
     public static final RegistryObject<EndPetAbility> END = PET_ABILITIES.register("end", EndPetAbility::new);
     public static final RegistryObject<PetalPetAbility> PETAL = PET_ABILITIES.register("petal", PetalPetAbility::new);
+    public static final RegistryObject<PotionPetAbility> POTION = PET_ABILITIES.register("potion", PotionPetAbility::new);
 
 
 }
