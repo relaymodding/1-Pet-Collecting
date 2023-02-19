@@ -2,12 +2,16 @@ package org.relaymodding.petcollecting.items;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +25,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 import org.relaymodding.petcollecting.Main;
 import org.relaymodding.petcollecting.api.PetAbility;
+import org.relaymodding.petcollecting.data.Constants;
 
 import java.util.List;
 
@@ -30,6 +35,7 @@ public class PetItem extends Item {
     public static String UNBREAKING_CHANCE = "unbreakingChance";
 
     private static final int MAX_DAMAGE = 16;
+    private static final TagKey<Item> FIRE_IMMUNE_PETS = ItemTags.create(new ResourceLocation(Constants.MOD_ID, "fire_immune"));
 
     public PetItem(RegistryObject<? extends PetAbility> ability, Ingredient food) {
         super(new Item.Properties().stacksTo(1).tab(Main.PC_ITEMS_TAB).durability(food == Ingredient.EMPTY ? 0 : MAX_DAMAGE));
@@ -106,5 +112,16 @@ public class PetItem extends Item {
 
     public RegistryObject<? extends PetAbility> getAbility() {
         return ability;
+    }
+
+    @Override
+    public boolean canBeHurtBy(DamageSource source) {
+
+        if (source == DamageSource.LAVA) {
+
+            return !this.builtInRegistryHolder().is(FIRE_IMMUNE_PETS);
+        }
+
+        return super.canBeHurtBy(source);
     }
 }
