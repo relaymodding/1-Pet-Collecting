@@ -117,7 +117,7 @@ public class PetItem extends Item {
     @Override
     public boolean canBeHurtBy(DamageSource source) {
 
-        if (source == DamageSource.LAVA) {
+        if (source.isFire()) {
 
             return !this.builtInRegistryHolder().is(FIRE_IMMUNE_PETS);
         }
