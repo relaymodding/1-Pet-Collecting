@@ -1,4 +1,10 @@
-# pet-collecting
+# Pet Collecting
+
+This has been made via a 5 participant 4 hour each relay.
+
+https://curseforge.com/minecraft/mc-mods/pet-collecting
+
+## Motivational messages from participants during the relay:
 
 Good luck Jared (and Darkhax)! Ucandoit!
 
